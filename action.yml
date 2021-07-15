@@ -1,0 +1,20 @@
+name: "create-tag"
+description: "Creates git tag"
+
+inputs:
+  tag:
+    description: 'tag to create'
+    required: true
+  current-tag:
+    description: 'current release tag'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: tag
+      shell: bash
+      run: '[[ $(git tag --points-at HEAD | xargs echo) != "$CURRENT_RELEASE" ]] && git tag -am "$TAG" $TAG && git push --tags'
+      env:
+        TAG: ${{ inputs.tag }}
+        CURRENT_RELEASE: ${{ inputs.tag }}
