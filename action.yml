@@ -17,4 +17,4 @@ runs:
       run: '[[ $(git tag --points-at HEAD | xargs echo) != "$CURRENT_RELEASE" ]] && git tag -am "$TAG" $TAG && git push --tags'
       env:
         TAG: ${{ inputs.tag }}
-        CURRENT_RELEASE: ${{ inputs.tag }}
+        CURRENT_RELEASE: ${{ inputs.current-tag }}
