@@ -24,7 +24,7 @@ runs:
         CURRENT_RELEASE: ${{ inputs.current-tag }}
     - name: tag
       shell: bash
-      run: '([[ $CURRENT_RELEASE == "" ]] || [[ $(git tag --points-at HEAD | xargs echo) != "$CURRENT_RELEASE" ]]) && git tag -am "$TAG" $TAG && git push --tags'
+      run: 'git tag -am "$TAG" $TAG && git push --tags'
       env:
         TAG: ${{ inputs.tag }}
         CURRENT_RELEASE: ${{ inputs.current-tag }}
