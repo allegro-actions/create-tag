@@ -18,7 +18,7 @@ runs:
         echo "CURRENT RELEASE $CURRENT_RELEASE"
         echo "NEW TAG $TAG"
         echo "CURRENT TAGS:"
-        echo git tag --points-at HEAD
+        git tag --points-at HEAD
       env:
         TAG: ${{ inputs.tag }}
         CURRENT_RELEASE: ${{ inputs.current-tag }}
