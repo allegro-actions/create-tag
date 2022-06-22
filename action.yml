@@ -8,6 +8,14 @@ inputs:
   current-tag:
     description: 'current release tag'
     required: true
+  user-name:
+    description: 'the username that is associated with Git commits/tags'
+    required: false
+    default: ''
+  user-email:
+    description: 'the user email that is associated with Git commits/tags'
+    required: false
+    default: ''
 
 runs:
   using: composite
@@ -22,6 +30,14 @@ runs:
       env:
         TAG: ${{ inputs.tag }}
         CURRENT_RELEASE: ${{ inputs.current-tag }}
+    - name: configure git username
+      if: "${{ inputs.user-name != '' }}"
+      shell: bash
+      run: git config user.name ${{ inputs.user-name }}
+    - name: configure git user email
+      if: "${{ inputs.user-email != '' }}"
+      shell: bash
+      run: git config user.email ${{ inputs.user-email }}
     - name: tag
       shell: bash
       run: 'git tag -am "$TAG" $TAG && git push --tags'
