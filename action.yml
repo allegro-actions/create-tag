@@ -22,6 +22,11 @@ runs:
       env:
         TAG: ${{ inputs.tag }}
         CURRENT_RELEASE: ${{ inputs.current-tag }}
+    - name: configure git
+      shell: bash
+      run: |
+        git config user.email github-actions@github.com
+        git config user.name github-actions
     - name: tag
       shell: bash
       run: 'git tag -am "$TAG" $TAG && git push --tags'
