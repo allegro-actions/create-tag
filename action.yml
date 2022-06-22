@@ -31,11 +31,11 @@ runs:
         TAG: ${{ inputs.tag }}
         CURRENT_RELEASE: ${{ inputs.current-tag }}
     - name: configure git username
-      if: "${{ input.user-name != '' }}"
+      if: "${{ inputs.user-name != '' }}"
       shell: bash
       run: git config user.name ${{ inputs.user-name }}
     - name: configure git user email
-      if: "${{ input.user-email != '' }}"
+      if: "${{ inputs.user-email != '' }}"
       shell: bash
       run: git config user.email ${{ inputs.user-email }}
     - name: tag
