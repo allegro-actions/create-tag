@@ -15,6 +15,10 @@ steps:
 
 ## Inputs
 
-`tag` - tag to create
+`tag` - tag to create.
 
 `current-tag` - current tag, action won't create new tag when executed on current release tag.
+
+`user-name` - the username that is associated with Git commits/tags, optional parameter.
+
+`user-email` - the user email that is associated with Git commits/tags, optional parameter.
