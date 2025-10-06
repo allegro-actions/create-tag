@@ -34,11 +34,11 @@ runs:
     - name: Configure Git username
       if: "${{ inputs.user-name != '' }}"
       shell: bash
-      run: git config user.name ${{ inputs.user-name }}
+      run: git config user.name "${{ inputs.user-name }}"
     - name: Configure Git user email
       if: "${{ inputs.user-email != '' }}"
       shell: bash
-      run: git config user.email ${{ inputs.user-email }}
+      run: git config user.email "${{ inputs.user-email }}"
     - name: tag
       shell: bash
       run: git tag -am "$TAG" "$TAG" && git push origin "$TAG"
