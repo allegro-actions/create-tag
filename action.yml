@@ -1,5 +1,5 @@
 name: "create-tag"
-description: "Creates git tag"
+description: "Creates Git tag"
 
 inputs:
   tag:
@@ -7,7 +7,9 @@ inputs:
     required: true
   current-tag:
     description: 'current release tag'
-    required: true
+    required: false
+    default: ''
+    deprecationMessage: current-tag is no longer used
   user-name:
     description: 'the username that is associated with Git commits/tags'
     required: false
@@ -20,27 +22,25 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: echo
+    - name: Print tags
       shell: bash
       run: |
-        echo "CURRENT RELEASE $CURRENT_RELEASE"
-        echo "NEW TAG $TAG"
-        echo "CURRENT TAGS:"
+        echo "Going to create tag: $TAG"
+        echo "Current tags:"
         git tag --points-at HEAD
       env:
         TAG: ${{ inputs.tag }}
-        CURRENT_RELEASE: ${{ inputs.current-tag }}
-    - name: configure git username
+        CURRENT_TAG: ${{ inputs.current-tag }}
+    - name: Configure Git username
       if: "${{ inputs.user-name != '' }}"
       shell: bash
       run: git config user.name ${{ inputs.user-name }}
-    - name: configure git user email
+    - name: Configure Git user email
       if: "${{ inputs.user-email != '' }}"
       shell: bash
       run: git config user.email ${{ inputs.user-email }}
     - name: tag
       shell: bash
-      run: 'git tag -am "$TAG" $TAG && git push --tags'
+      run: git tag -am "$TAG" "$TAG" && git push origin "$TAG"
       env:
         TAG: ${{ inputs.tag }}
-        CURRENT_RELEASE: ${{ inputs.current-tag }}

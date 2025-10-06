@@ -10,14 +10,11 @@ steps:
     if: github.ref == 'refs/heads/main'
     with:
       tag: v1.0.0
-      current-tag: v0.0.9
 ```
 
 ## Inputs
 
 `tag` - tag to create.
-
-`current-tag` - current tag, action won't create new tag when executed on current release tag.
 
 `user-name` - the username that is associated with Git commits/tags, optional parameter.
 
