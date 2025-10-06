@@ -1,21 +1,21 @@
-name: "create-tag"
-description: "Creates Git tag"
+name: create-tag
+description: Creates Git tag
 
 inputs:
   tag:
-    description: 'tag to create'
+    description: tag to create
     required: true
   current-tag:
-    description: 'current release tag'
+    description: current release tag
     required: false
     default: ''
     deprecationMessage: current-tag is no longer used
   user-name:
-    description: 'the username that is associated with Git commits/tags'
+    description: the username that is associated with the tag
     required: false
     default: ''
   user-email:
-    description: 'the user email that is associated with Git commits/tags'
+    description: the user email that is associated with the tag
     required: false
     default: ''
 
